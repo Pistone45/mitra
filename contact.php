@@ -59,7 +59,13 @@ require('header.php');
         <div class="info">
           <i class="icofont-google-map"></i>
           <h4>Location:</h4>
-          <p>A108 Adam Street<br>New York, NY 535022</p>
+          <p>Area 2
+          Bwalo la Mjovu
+          P.O Box 445
+          Lilongwe</p><br>
+          <p>230 Sherwood Drive
+          Avondale West
+          Harare</p>
         </div>
       </div>
     </section>
@@ -79,7 +85,7 @@ require('header.php');
                 <div class="col-lg-4 info">
                   <i class="icofont-phone"></i>
                   <h4>Call:</h4>
-                  <p>+155895548851<br>+155892247514</p>
+                  <p>+263732591154<br>+265888876995</p>
                 </div>
           </div>
           </div>

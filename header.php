@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -42,7 +43,7 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1><a href="index.php">Mitra</a></h1>
+        <h1><a href="index.php"><img src="images/logo.jpg"></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -72,7 +73,9 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container text-center text-md-left" data-aos="fade-up">
       <h1>Welcome to <span>Mitra</span></h1>
-      <h2>We are team of talanted designers making websites</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      <h2>MITRA Systems is an IBM Business Partner
+      specialising in the implementation and support of
+      enterprise level server, virtualisation and storage
+      solutions.</h2>
     </div>
   </section><!-- End Hero -->
