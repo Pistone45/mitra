@@ -650,6 +650,7 @@ section {
   border-radius: 6px;
   background: #fff;
   transition: ease-in-out 0.3s;
+  
 }
 
 .services .icon-box i {
@@ -659,7 +660,7 @@ section {
 }
 
 .services .icon-box h4 {
-  margin-left: 70px;
+  /*! margin-left: 70px; */
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 18px;
@@ -671,7 +672,7 @@ section {
 }
 
 .services .icon-box p {
-  margin-left: 70px;
+  /*! margin-left: 70px; */
   line-height: 24px;
   font-size: 14px;
 }

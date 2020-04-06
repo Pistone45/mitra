@@ -17,40 +17,50 @@ $news = $getNews->getNews();
           <p>Read our latest news here</p>
         </div>
 
-        <div class="row">
+		<div class="row ">
+		
+		<?php
+			if(isset($news) && count($news)>0){
+				foreach($news as $new){ ?>
+				<div class="col-lg-6">
+				<div class="icon-box">
+					<div class="row">
+					
+						<div class="col-lg-4">
+							<img height="100%" width="100%" src="<?php echo substr($new['image_url'],3); ?>" />
+						</div>
+						
+						<div class="col-lg-8">
+							<h4><a href="#"><?php echo $new['title']; ?></a></h4>
+					<p class="text-justify overflow-hidden">
+						<?php echo substr($new['news'],0,150); ?> </p>
 
-<?php
-      if(count($news)>0){
-        foreach($news as $new){ ?>
-          <div class="col-md-6 mt-4">
-            <div class="icon-box">
-              <div class="row">
-                <div class="col-md-3">
-                  <img width="150" height="150" src="<?php $trim = $new['image_url']; echo ltrim($trim, './'); ?>"/>
-                </div>
-
-                <div class="col-md-9">
-                <h4><a href="#"><?php echo $new['title']; ?></a></h4>
-                <p class="text-justify"><?php echo substr($new['news'],0,150); ?> <a href="news-details.php?id=<?php echo $new['id']; ?>"><button class="btn btn-outline-success btn-sm"><?php $new['id']; ?>READ MORE</button></a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-              <?php
-    }
-    
-  } ?>
-
-        </div>
+						<a href="news-details.php?id=<?php echo $new['id']; ?>">
+						<button class="btn btn-outline-success btn-sm"> READ MORE</button>
+						</a>
+						
+					
+						</div>					
+						
+					</div>
+					
+					</div>
+				</div>
+				<?php
+					
+				}
+			}
+		?>
+			
+			
+			
+		</div>
+       
 
       </div>
     </section><!-- End Services Section -->
 <br><br>
-    <div class="row container-fluid">
-      <div class="col-md-4 alert alert-secondary"><p>dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p></div>
-      <div class="col-md-4 alert alert-secondary">2</div>
-      <div class="col-md-4 alert alert-secondary">3</div>
-    </div>
+  
 
 
 

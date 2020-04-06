@@ -51,10 +51,11 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="index.php">Home</a></li>
+		   <li><a href="about-us.php">About Us</a></li>
           <li><a href="services.php">Services</a></li>
           <li><a href="news.php">News</a></li>
           <li><a href="contact.php">Contact Us</a></li>
-          <li><a href="about-us.php">About Us</a></li>
+         
 
         </ul>
       </nav><!-- .nav-menu -->

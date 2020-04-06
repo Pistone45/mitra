@@ -5,7 +5,7 @@ require('header.php');
   <main id="main">
 
     <!-- ======= What We Do Section ======= -->
-    <section id="what-we-do" class="what-we-do">
+    <section id="what-we-do" class="what-we-do section-bg">
       <div class="container">
 
         <div class="section-title">
