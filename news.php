@@ -45,8 +45,14 @@ $news = $getNews->getNews();
 
       </div>
     </section><!-- End Services Section -->
+<br><br>
+    <div class="row container-fluid">
+      <div class="col-md-4 alert alert-secondary"><p>dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</p></div>
+      <div class="col-md-4 alert alert-secondary">2</div>
+      <div class="col-md-4 alert alert-secondary">3</div>
+    </div>
 
-    
+
 
 <?php 
 require('footer.php');

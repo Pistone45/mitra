@@ -1,5 +1,24 @@
-<?php 
-require('header.php');
+<?php
+ob_start();
+require("header.php");
+include_once("functions/functions.php");
+
+if(isset($_POST['submit'])){
+
+  $recipient ="momiclodge@yahoo.com";
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $subject = "CONTACT FROM WEBSITE";
+  $message = $_POST['message'];
+  
+  
+  $mailBody =$message;
+  mail($recipient, $subject, $mailBody, "From: $name <$email>");
+  $_SESSION["message-sent"] = true;;
+}
+
+
+
 ?>
 
   <main id="main">
@@ -19,7 +38,7 @@ require('header.php');
 
         <div class="row mt-5 justify-content-center">
           <div class="col-lg-10">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="contact.php" method="POST">
               <div class="form-row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -38,12 +57,7 @@ require('header.php');
                 <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                 <div class="validate"></div>
               </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button class="btn btn-primary" name="submit" type="submit">Send Message</button></div>
             </form>
           </div>
 
