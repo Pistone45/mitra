@@ -1,6 +1,5 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -28,23 +27,20 @@
             </p>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Quick Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about-us.php">ABout Us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services.php">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="news.php">News</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="contact.php">Contact Us</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Enter your email to join our newsletter and never miss a thing</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Portfolio</h4>
+            <p>The group employs five (5) people, Strong skill exist in the areas of mid-range and high-end IBM servers and Storage Area networks (EMC and IBM). The installation and maintenance of server and storage solutions has earned MITRA Systems the reputation of being one of the most capable</p>
           </div>
 
         </div>
@@ -93,4 +89,6 @@
 
 </body>
 
+
+</style>
 </html>

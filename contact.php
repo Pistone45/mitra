@@ -21,9 +21,14 @@ if(isset($_POST['submit'])){
 
 ?>
 
+  <!-- ======= Hero Section ======= -->
+  <section id="hero1" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      <h1><span>Contact Us</span></h1>
+    </div>
+  </section><!-- End Hero -->
+
   <main id="main">
-
-
 
 <br>
   <div class="row container-fluid">

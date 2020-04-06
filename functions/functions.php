@@ -311,6 +311,79 @@ class User{
 } //End of Class Users
 
 
+/**
+ * 
+ */
+class Service{
+	
+	public function __construct(){
+
+		try{
+
+		$this->dbCon = new Connection();
+
+		$this->dbCon = $this->dbCon->dbConnection();
+		$this->dbCon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		} catch (PDOException $e){
+			echo "Lost connection to the database";
+		}
+	}
+
+	public function addService($image_Path,$service,$description, $category_id){
+				$addService = $this->dbCon->prepare("INSERT INTO services (image_url,service, description, category_id) VALUES (:image_url, :service, :description, :category_id)" );
+
+				$addService->execute(array(
+						':image_url'=>($image_Path),
+						':service'=>($service),
+						':description'=>($description),
+						':category_id'=>($category_id)));
+						  
+						  $_SESSION['service-added']=true;
+		
+	}
+
+	public function getCategoryType(){
+		$getCategoryType = $this->dbCon->prepare("SELECT id, category_name FROM category");
+		$getCategoryType->execute();
+
+		if($getCategoryType->rowCount()>0){
+			$rows = $getCategoryType->fetchAll();
+
+			return  $rows;
+		}
+		
+	}
+
+	public function getServices(){
+		$getServices = $this->dbCon->prepare("SELECT id, service, description FROM services WHERE category_id = 1");
+		$getServices->execute();
+
+		if($getServices->rowCount()>0){
+			$rows = $getServices->fetchAll();
+
+			return  $rows;
+		}
+		
+	}
+
+
+public function getAnotherServices(){
+		$getAnotherServices = $this->dbCon->prepare("SELECT id, service, description FROM services WHERE category_id = 2");
+		$getAnotherServices->execute();
+
+		if($getAnotherServices->rowCount()>0){
+			$rows = $getAnotherServices->fetchAll();
+
+			return  $rows;
+		}
+		
+	}
+
+
+}//End of class Service
+
+
 
 Class Contact{
 

@@ -13,10 +13,10 @@ $services = $getServices->getServices();
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>View Services | Environmental Industries</title>
+  <meta http-equiv="X-UA-Compatible" description="IE=edge">
+  <service>View Services | Environmental Industries</service>
   <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <meta description="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -46,10 +46,10 @@ $services = $getServices->getServices();
   <!-- Left side column. contains the logo and sidebar -->
    <?php include_once('sidebar.html'); ?>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+  <!-- description Wrapper. Contains page description -->
+  <div class="description-wrapper">
+    <!-- description Header (Page header) -->
+    <section class="description-header">
       <h1>
         Edit Services
        
@@ -61,8 +61,8 @@ $services = $getServices->getServices();
       </ol>
     </section>
 
-    <!-- Main content -->
-    <section class="content">
+    <!-- Main description -->
+    <section class="description">
 	<!-- form start -->
             <form role="form" action="add-news.php" method="POST" enctype="multipart/form-data">
 			<?php
@@ -87,8 +87,8 @@ $services = $getServices->getServices();
 							foreach($services as $service){ ?>
 							<tr>
 								<td><img src="<?php echo $service['image_url']; ?>" height="70px" width="70px;" /></td>
-								<td><?php echo $service['title']; ?></td>
-								<td><?php echo $service['content']; ?></td>
+								<td><?php echo $service['service']; ?></td>
+								<td><?php echo $service['description']; ?></td>
 								<td><a href="edit-service.php?id=<?php echo $service['id']; ?>"><i class="fa fa-pencil"></i> Edit Service</a></td>
 							</tr>
 							<?php
@@ -112,9 +112,9 @@ $services = $getServices->getServices();
       <!-- /.row -->
 	  </form>
     </section>
-    <!-- /.content -->
+    <!-- /.description -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- /.description-wrapper -->
   <?php include_once("footer.html"); ?>
 
   <!-- Control Sidebar -->
@@ -125,8 +125,8 @@ $services = $getServices->getServices();
       <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
     <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
+    <div class="tab-description">
+      <!-- Home tab description -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -232,10 +232,10 @@ $services = $getServices->getServices();
 
       </div>
       <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- Stats tab description -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab description</div>
       <!-- /.tab-pane -->
-      <!-- Settings tab content -->
+      <!-- Settings tab description -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
         <form method="post">
           <h3 class="control-sidebar-heading">General Settings</h3>

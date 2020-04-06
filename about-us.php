@@ -1,6 +1,12 @@
 <?php 
 require('header.php');
 ?>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero1" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      <h1><span>About Us</span></h1>
+    </div>
+  </section><!-- End Hero -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">

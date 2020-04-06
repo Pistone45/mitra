@@ -5,6 +5,9 @@ if(!isset($_SESSION['user'])){
 		exit;
 	}
 
+  $getCategoryType = new Service();
+  $Category_type = $getCategoryType->getCategoryType();
+
 if(isset($_POST['submit'])){
 	
 		//validate ID attachment
@@ -47,11 +50,12 @@ if(isset($_POST['submit'])){
 	 // echo $image_Path; die();
 	 }
 
-	  $title = $_POST['title'];
-	  $content = trim($_POST['content']); 
+	  $service = $_POST['service'];
+	  $description = $_POST['description'];
+    $category_id = $_POST['category_id']; 
 	  
 	 $addService = new Service();
-	 $addService->addService($image_Path,$title,$content);
+	 $addService->addService($image_Path,$service,$description, $category_id);
 	
 
 	
@@ -63,7 +67,7 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Add Service | Environmental Industries</title>
+  <service>Add Service | Environmental Industries</service>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -131,10 +135,25 @@ if(isset($_POST['submit'])){
           <!-- general form elements -->
               <div class="box-body">
                 <div class="form-group">
-                  <label for="fatherName">Service Title</label>
-                  <input class="form-control" name="title" required>
+                  <label for="fatherName">Service service</label>
+                  <input class="form-control" name="service" required>
                 </div>
 				
+                <label>Select Category Type</label>
+          <select name="category_id" class="form-control" id="room_type">
+            <?php 
+              if(isset($Category_type) && count($Category_type)>0){
+                  foreach($Category_type as $service){ ?>
+                      <option value="<?php echo $service['id']; ?>"><?php echo $service['category_name']; ?></option>
+                    <?php
+
+                  }
+
+              }
+            ?>
+          
+          </select>
+
 				<div class="form-group">
                   <label for="fatherMiddleName">Service Image</label>
                   <input type="file" class="" name="service_image" required>
@@ -142,7 +161,7 @@ if(isset($_POST['submit'])){
 				
 				<div class="form-group">
                   <label for="fatherLastname">Service Description</label>
-                  <textarea class="form-control" name="content"  required>                       
+                  <textarea class="form-control" name="description" required>                       
                         </textarea>
                 </div>
 				
