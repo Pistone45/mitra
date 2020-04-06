@@ -13,7 +13,7 @@ require('header.php');
           <div class="col-lg-6 pt-4 pt-lg-0">
             <h3>About Us</h3>
             <p>
-              We recognised as having some of the
+              Mitra Systems is well positioned to cater for all your client needs from planning, supply, installation, on-site support and after sales warranty support for all your IBM hardware infrastructure, allowing us to give our clients reliability, availability and serviceability of 99.999%. Apart from this, We are recognised as having some of the
               best core skills and references for complex server
               and storage solutions in the region. We are also authorised by IBM to provide IBM Warranty Services and IBM Installation Services on behalf of IBM.
             </p>

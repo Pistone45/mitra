@@ -46,25 +46,7 @@ $news = $getNews->getNews();
       </div>
     </section><!-- End Services Section -->
 
-<div class="row container-fluid">
-  <div class="col-md-4">
-    <div class="alert alert-secondary" role="alert">
-      <?php
-      if(count($news)>0){
-        foreach($news as $new){ ?>
-          <img width="150" height="150" src="<?php $trim = $new['image_url']; echo ltrim($trim, './'); ?>"/>
-          <br>
-          <h4><a href="#"><?php echo $new['title']; ?></a></h4>
-          <p class="text-justify"><?php echo substr($new['news'],0,150); ?> <a href="news-details.php?id=<?php echo $new['id']; ?>"><button class="btn btn-outline-success btn-sm"><?php $new['id']; ?>READ MORE</button></a></p>
-
-      <?php
-    }
     
-  } ?>
-      
-    </div>
-  </div>
-</div>
 
 <?php 
 require('footer.php');
