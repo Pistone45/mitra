@@ -2,7 +2,14 @@
 require('header.php');
 include_once("functions/functions.php");
 $getNews = new News();
-$news = $getNews->getNews();
+$news1 = $getNews->getNews();
+
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+	$getNews = new News();
+	$news = $getNews->getSpecificNews($id);
+
+}
 
 ?>
 
@@ -24,52 +31,61 @@ $news = $getNews->getNews();
           <p>Read our latest news here</p>
         </div>
 
-		<div class="row ">
+<div class="row">
+	<div class="col-lg-8">
+		<div class="icon-box">
+		<div class="row">
 		
-		<?php
-			if(isset($news) && count($news)>0){
-				foreach($news as $new){ ?>
-				<div class="col-lg-6">
-				<div class="icon-box">
+				<img height="100%" class="img-fluid" width="100%" src="<?php echo substr($news['image_url'],3); ?>" />
+			<br><br><br><br>
+				<h4><a href="#"><?php echo $news['title']; ?></a></h4>
+
+		<p class="text-justify overflow-hidden">
+			<?php echo $news['news']; ?> </p>
+						
+		</div>
+		
+		</div>
+	</div>
+	<div class="col-lg-4">
+						<div class="icon-box">
 					<div class="row">
-					
+					<?php
+						if(isset($news1) && count($news1)>0){
+							foreach($news1 as $new){ ?>
 						<div class="col-lg-4">
-							<img height="100%" width="100%" src="<?php echo substr($new['image_url'],3); ?>" />
+							<img height="100" width="100" src="<?php echo substr($new['image_url'],3); ?>" />
 						</div>
 						
 						<div class="col-lg-8">
 							<h4><a href="#"><?php echo $new['title']; ?></a></h4>
 					<p class="text-justify overflow-hidden">
-						<?php echo substr($new['news'],0,150); ?> </p>
+						<?php echo substr($new['news'],0,100); ?> </p>
 
 						<a href="news-details.php?id=<?php echo $new['id']; ?>">
 						<button class="btn btn-outline-success btn-sm"> READ MORE</button>
 						</a>
 						
-					
-						</div>				
-						
-					</div>
-					
-					</div>
-					<br><br>
-				</div>
-				<?php
+					<br><br><br>
+						</div>
+					<?php
 					
 				}
 			}
 		?>
 			
-			
-			
-		</div>
+						
+					</div>
+					
+					</div>
+	</div>
+</div>
        
 
       </div>
     </section><!-- End Services Section -->
 <br><br>
   
-
 
 
 <?php 

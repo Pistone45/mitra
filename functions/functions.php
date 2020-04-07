@@ -494,7 +494,7 @@ class News{
 
 	public function getNews(){
 		$getNews = $this->dbCon->Prepare("SELECT id, title, news, image_url,news.date_added, CONCAT(firstname,' ',middlename,' ',lastname) as author 
-		FROM news INNER JOIN users ON (users.username=news.users_username) ORDER BY news.date_added DESC");
+		FROM news INNER JOIN users ON (users.username=news.users_username) ORDER BY news.date_added DESC LIMIT 4");
 		$getNews->execute();
 		
 		if($getNews->rowCount()>0){
