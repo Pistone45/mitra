@@ -12,7 +12,7 @@
               P.O Box 445<br>
               Lilongwe<br><br>
               <strong>Phone:</strong> +265 888 876 995<br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Email:</strong> rbenimana@mitra.mw<br>
             </p>
           </div>
 
@@ -23,7 +23,6 @@
               Avondale West<br>
               Harare <br><br><br>
               <strong>Phone:</strong> +263 732591154<br>
-              <strong>Email:</strong> info@example.com<br>
             </p>
           </div>
 

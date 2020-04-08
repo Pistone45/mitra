@@ -4,69 +4,21 @@ if(!isset($_SESSION['user'])){
 		header("Location: login.php");
 		exit;
 	}
-if(isset($_GET['id'])){
-	$id = $_GET['id'];
-$getSpecificService = new Service();
-$service = $getSpecificService->getSpecificService($id);	
-}
 
 
 if(isset($_POST['submit'])){
-	
-	//validate ID attachment
-	//validate  file
-	 if(isset($_FILES['service_image'])){
-      $errors= array();
-      $file_name = $_FILES['service_image']['name'];
-      $file_size =$_FILES['service_image']['size'];
-      $file_tmp =$_FILES['service_image']['tmp_name'];
-      $file_type=$_FILES['service_image']['type'];
-	  $dot = ".";
+$getUserProfile = new User();
+$user_details = $getUserProfile-> getUserProfile();
 
-     // $file_ext=strtolower(end(explode($dot,$file_name)));
-
-	  $bannerpath = "../img/";
-	  $bannerpath = $bannerpath . basename($file_name);
-	   $file_ext = pathinfo($bannerpath,PATHINFO_EXTENSION);
-      $expensions= array("JPG", "jpg","PNG","png","GIF","gif");
-
-      if(in_array($file_ext,$expensions)=== false){
-         $errors[]="This file extension is not allowed.";
-      }
-
-      if($file_size > 3007152){
-
-         $errors[]='File size must be not more than 3 MB';
-
-      }
-
-      if(empty($errors)==true){
-		move_uploaded_file($file_tmp, $bannerpath);
-
-      }else{
-		   $errors[]='Error Uploading file';
-
-         //print_r($errors);
-      }
-	 }
-
-	  $service = $_POST['service'];
-	 $description = $_POST['description'];
-	   $service_id = $_POST['id'];
-	 if(strlen($bannerpath) ==7){
-		 $bannerpath = $_POST['url'];
-		 
-	 }
+	 $username = $user_details['username'];
+   $password = $_POST['password'];
+	 $password = password_hash($password, PASSWORD_DEFAULT)."\n";
 	
 
-     $editService = new Service();
+  $updatepassword= new User();
+	$updatepassword->updatepassword($username,$password);
 
-	 $editService->editService($service,$description,$bannerpath,$service_id);
-
-	//refresh page
-	$id = $service_id;
-	$getSpecificService = new Service();
-	$service = $getSpecificService->getSpecificService($id);	
+	//refresh page	
 }
 
 ?>
@@ -125,16 +77,16 @@ if(isset($_POST['submit'])){
     <!-- Main content -->
     <section class="content">
 	<!-- form start -->
-            <form role="form" action="edit-service.php" method="POST" enctype="multipart/form-data">
+            <form role="form" action="update-password.php" method="POST" enctype="multipart/form-data">
 			<?php
-                            if(isset($_SESSION["service-edited"]) && $_SESSION["service-edited"]==true)
+                            if(isset($_SESSION["password_updated"]) && $_SESSION["password_updated"]==true)
                             {
                                 echo "<div class='alert alert-success'>";
                                 echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
-                                echo "<strong>Success! </strong>"; echo "You have successfully edited the Service";
-                                unset($_SESSION["service-edited"]);
+                                echo "<strong>Success! </strong>"; echo "You have successfully Updated your Password";
+                                unset($_SESSION["password_updated"]);
                                 echo "</div>";
-								 header('Refresh: 5; URL= view-services.php');
+                 header('Refresh: 5; URL= logout.php');
                             }
 							?>
       <div class="row box box-primary">
@@ -143,31 +95,15 @@ if(isset($_POST['submit'])){
           <!-- general form elements -->
               <div class="box-body">
                 <div class="form-group">
-                  <label for="fatherName">Service</label>
-                  <input class="form-control" name="service" value="<?php echo $service['service'];   ?>" required>
+                  <label for="fatherName">New Password</label>
+                  <input class="form-control" name="password" required>
                 </div>
-				<input type="hidden" value="<?php echo $service['image_url'];   ?>" name="url" />
-					<input type="hidden" value="<?php echo $service['id'];   ?>" name="id" />
-                     <div class="">
-                     <img src="<?php echo $service['image_url'];   ?>" class="img img-thumbnail" width="50px;"><br/>
-					 
-				<div class="form-group">
-                  <label for="fatherMiddleName">Service Image</label>
-                  <input type="file" class="" name="service_image" >
-                </div>
-				
-				<div class="form-group">
-                  <label for="fatherLastname">Service Content</label>
-                  <textarea class="form-control" name="description" required><?php echo $service['description'];   ?></textarea>
-                </div>
-				
-              
                 
               </div>
 			  
               <!-- /.box-body -->
 			  <div class="box-footer">
-                <button type="submit" name="submit" class="btn btn-primary btn-block">Edit Service</button>
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Update Password</button>
               </div>
           <!-- /.box -->
 

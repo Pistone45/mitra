@@ -381,6 +381,29 @@ public function getAnotherServices(){
 	}
 
 
+	public function getSpecificService($id){
+		$getSpecificService = $this->dbCon->Prepare("SELECT id, service, description, category_id, image_url FROM services WHERE id=?");
+		$getSpecificService->bindParam(1,$id);
+		$getSpecificService->execute();
+		
+		if($getSpecificService->rowCount()>0){
+			$row = $getSpecificService->fetch();
+			return $row;
+		}
+	} //end of getting Specific service
+
+
+	public function editService($service, $description, $bannerpath, $service_id){
+		$editService = $this->dbCon->PREPARE("UPDATE services SET service=?, description=?, image_url=? WHERE id=?");
+		$editService->bindParam(1,$service);
+		$editService->bindParam(2,$description);
+		$editService->bindParam(3,$bannerpath);
+		$editService->bindParam(4,$service_id);
+		$editService->execute();
+		$_SESSION['service-edited'] = true;
+	}
+
+
 }//End of class Service
 
 

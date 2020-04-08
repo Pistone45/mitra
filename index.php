@@ -71,7 +71,7 @@ require('header.php');
 
         <div class="row">
           <div class="col-lg-6">
-            <img src="images/ibm.jpg" class="img-fluid" alt="">
+            <img src="images/vir.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
@@ -84,18 +84,6 @@ require('header.php');
               <li><i class="bx bx-check-double"></i> IBM warranty centre</li>
               <li><i class="bx bx-check-double"></i> IBM Solutions Service Provider</li>
             </ul>
-            <div class="row icon-boxes">
-              <div class="col-md-6">
-                <i class="bx bx-receipt"></i>
-                <h4>Server Storage</h4>
-                <p>installation and maintenance of several complex Server and Storage installations</p>
-              </div>
-              <div class="col-md-6 mt-4 mt-md-0">
-                <i class="fas fa-server"></i>
-                <h4>Visualization</h4>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-              </div>
-            </div>
           </div>
         </div>
 

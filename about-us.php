@@ -7,17 +7,20 @@ require('header.php');
       <h1><span>About Us</span></h1>
     </div>
   </section><!-- End Hero -->
-
+<br>
+  <div class="section-title">
+    <h2>About Us</h2>
+  </div>
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
 
         <div class="row">
           <div class="col-lg-6">
-            <img src="assets/img/ibm.jpg" class="img-fluid" alt="">
+            <img src="images/vir.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
-            <h3>About Us</h3>
+
             <p>
               Mitra Systems is well positioned to cater for all your client needs from planning, supply, installation, on-site support and after sales warranty support for all your IBM hardware infrastructure, allowing us to give our clients reliability, availability and serviceability of 99.999%. Apart from this, We are recognised as having some of the
               best core skills and references for complex server
@@ -34,12 +37,12 @@ require('header.php');
               <div class="col-md-6">
                 <i class="bx bx-receipt"></i>
                 <h4>Server Storage</h4>
-                <p>installation and maintenance of several complex Server and Storage installations</p>
+                <p>Installation and maintenance of several complex Server and Storage installations</p>
               </div>
               <div class="col-md-6 mt-4 mt-md-0">
                 <i class="fas fa-server"></i>
                 <h4>Visualization</h4>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                <p>Making software-based, or virtual, representations of things, such as servers, applications and networks</p>
               </div>
             </div>
           </div>
