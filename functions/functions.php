@@ -356,7 +356,7 @@ class Service{
 	}
 
 	public function getServices(){
-		$getServices = $this->dbCon->prepare("SELECT id, service, description FROM services WHERE category_id = 1");
+		$getServices = $this->dbCon->prepare("SELECT id, service, description FROM services");
 		$getServices->execute();
 
 		if($getServices->rowCount()>0){

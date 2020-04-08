@@ -14,7 +14,7 @@ $services = $getServices->getServices();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" description="IE=edge">
-  <service>View Services | Environmental Industries</service>
+  <service></service>
   <!-- Tell the browser to be responsive to screen width -->
   <meta description="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -86,9 +86,8 @@ $services = $getServices->getServices();
 						if(count($services)>0){
 							foreach($services as $service){ ?>
 							<tr>
-								<td><img src="<?php echo $service['image_url']; ?>" height="70px" width="70px;" /></td>
 								<td><?php echo $service['service']; ?></td>
-								<td><?php echo $service['description']; ?></td>
+								<td><?php echo substr($service['description'],0, 50); ?></td>
 								<td><a href="edit-service.php?id=<?php echo $service['id']; ?>"><i class="fa fa-pencil"></i> Edit Service</a></td>
 							</tr>
 							<?php
