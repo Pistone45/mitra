@@ -5,7 +5,7 @@ include_once("functions/functions.php");
 
 if(isset($_POST['submit'])){
 
-  $recipient ="momiclodge@yahoo.com";
+  $recipient ="rbenimana@mitra.mw";
   $name = $_POST['name'];
   $email = $_POST['email'];
   $subject = "CONTACT FROM WEBSITE";
@@ -94,7 +94,7 @@ if(isset($_POST['submit'])){
             <div class="col-lg-4 info mt-4 mt-lg-0">
               <i class="icofont-envelope"></i>
               <h4>Email:</h4>
-              <p>info@example.com<br>contact@example.com</p>
+              <p>rbenimana@mitra.mw<br>omumba@mitra.mw</p>
             </div>
           </div>
     </section>
@@ -104,7 +104,7 @@ if(isset($_POST['submit'])){
                 <div class="col-lg-4 info">
                   <i class="icofont-phone"></i>
                   <h4>Call:</h4>
-                  <p>+263732591154<br>+265888876995</p>
+                  <p>+265994885227<br>+265994885227</p>
                 </div>
           </div>
           </div>

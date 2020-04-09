@@ -6,8 +6,8 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Mitra</title>
-  <meta content="" name="descriptison">
-  <meta content="" name="keywords">
+  <meta content="MITRA Systems is an IBM Business Partner specialising in the implementation and support of enterprise level server, virtualisation and storage solutions." name="descriptison">
+  <meta content="Enterprise server, server vitualisation, storage solutions, IT Support" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
