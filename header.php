@@ -43,7 +43,7 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1><a href="index.php"><img src="images/logo.jpg"></a></h1>
+        <h1><a href="index.php"><img src="images/Logo.jpg"></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>

@@ -12,7 +12,7 @@
               P.O Box 445<br>
               Lilongwe<br><br>
               <strong>Phone:</strong> +265 888 876 995<br>
-              <strong>Email:</strong> rbenimana@mitra.mw<br>
+              <strong>Email:</strong> support@mitra.mw<br>
             </p>
           </div>
 
@@ -53,11 +53,8 @@
           Copyright &copy; <script>document.write(new Date().getFullYear());</script><strong><span> Mitra</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/lumia-bootstrap-business-template/ -->
-          Developed by <a href="http://www.virtualtechmalawi.com/">Virtual Tech</a>
+          
+          Designed & Developed by <a href="http://www.virtualtechmalawi.com/">Virtual Tech Malawi</a>
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">

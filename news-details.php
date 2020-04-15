@@ -37,8 +37,8 @@ if (isset($_GET['id'])) {
 		<div class="row">
 		
 				<img height="100%" class="img-fluid" width="100%" src="<?php echo substr($news['image_url'],3); ?>" />
-			<br><br><br><br>
-				<h4><a href="#"><?php echo $news['title']; ?></a></h4>
+			
+				<h4 style="padding-top:20px;"><a href="#"><?php echo $news['title']; ?></a></h4>
 
 		<p class="text-justify overflow-hidden">
 			<?php echo $news['news']; ?> </p>
