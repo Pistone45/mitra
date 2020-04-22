@@ -368,12 +368,13 @@ class Service{
 	}
 
 
-public function getAnotherServices(){
-		$getAnotherServices = $this->dbCon->prepare("SELECT id, service, description FROM services WHERE category_id = 2");
-		$getAnotherServices->execute();
+public function getServicesPerCategory($id){
+		$getServicesPerCategory = $this->dbCon->prepare("SELECT id, service, description FROM services WHERE category_id = ?");
+		$getServicesPerCategory->bindParam(1,$id);
+		$getServicesPerCategory->execute();
 
-		if($getAnotherServices->rowCount()>0){
-			$rows = $getAnotherServices->fetchAll();
+		if($getServicesPerCategory->rowCount()>0){
+			$rows = $getServicesPerCategory->fetchAll();
 
 			return  $rows;
 		}
@@ -391,6 +392,8 @@ public function getAnotherServices(){
 			return $row;
 		}
 	} //end of getting Specific service
+	
+	
 
 
 	public function editService($service, $description, $bannerpath, $service_id){

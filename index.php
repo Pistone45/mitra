@@ -7,10 +7,8 @@ require('header.php');
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container text-center text-md-left" data-aos="fade-up">
       <h1>Welcome to <span>Mitra</span></h1>
-      <h2>MITRA Systems is an IBM Business Partner
-      specialising in the implementation and support of
-      enterprise level server, virtualisation and storage
-      solutions.</h2>
+      <h2>We are a company specialising in the implementation and support of
+      enterprise level server, virtualisation, storage solutions and security solutions.</h2>
     </div>
   </section><!-- End Hero -->
 
