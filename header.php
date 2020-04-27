@@ -1,3 +1,10 @@
+<?php
+include_once("functions/functions.php");
+$id =10; //default id
+$getPortifolio = new Portfolio($id);
+$portfolio = $getPortifolio->getPortifolio($id);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -38,8 +38,8 @@
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Portfolio</h4>
-            <p>The group employs five (5) people, Strong skill exist in the areas of mid-range and high-end IBM servers and Storage Area networks (EMC and IBM). The installation and maintenance of server and storage solutions has earned MITRA Systems the reputation of being one of the most capable</p>
+            <h4> <?php if(isset($portfolio)){ echo $portfolio['title']; }?></h4>
+            <p> <?php if(isset($portfolio)){ echo substr($portfolio['content'],0,150); }?><a href="portfolio.php">.... Read More</a></p>
           </div>
 
         </div>

@@ -7,16 +7,13 @@ if(!isset($_SESSION['user'])){
 
 
 if(isset($_POST['submit'])){
-$getUserProfile = new User();
-$user_details = $getUserProfile-> getUserProfile();
 
-	 $username = $user_details['username'];
-   $password = $_POST['password'];
+     $password = $_POST['password'];
 	 $password = password_hash($password, PASSWORD_DEFAULT)."\n";
 	
 
-  $updatepassword= new User();
-	$updatepassword->updatepassword($username,$password);
+    $updatePassword= new User();
+	$updatePassword->updatePassword($password);
 
 	//refresh page	
 }
@@ -27,7 +24,7 @@ $user_details = $getUserProfile-> getUserProfile();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Edit Service | Environmental Industries</title>
+  <title>Edit Password | MITRA Systems</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -64,12 +61,12 @@ $user_details = $getUserProfile-> getUserProfile();
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Edit Service
+        Change Password
        
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="edit-service.php">Edit Service</a></li>
+        <li class="active"><a href="update-password.php">Change Password</a></li>
        
       </ol>
     </section>
@@ -77,7 +74,7 @@ $user_details = $getUserProfile-> getUserProfile();
     <!-- Main content -->
     <section class="content">
 	<!-- form start -->
-            <form role="form" action="update-password.php" method="POST" enctype="multipart/form-data">
+            <form role="form" action="update-password.php" method="POST">
 			<?php
                             if(isset($_SESSION["password_updated"]) && $_SESSION["password_updated"]==true)
                             {
@@ -96,7 +93,7 @@ $user_details = $getUserProfile-> getUserProfile();
               <div class="box-body">
                 <div class="form-group">
                   <label for="fatherName">New Password</label>
-                  <input class="form-control" name="password" required>
+                  <input type="password" class="form-control" name="password" required>
                 </div>
                 
               </div>

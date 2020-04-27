@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
 				<h4 style="padding-top:20px;"><a href="#"><?php echo $news['title']; ?></a></h4>
 
 		<p class="text-justify overflow-hidden">
-			<?php echo $news['news']; ?> </p>
+			<?php echo nl2br($news['news']); ?> </p>
 						
 		</div>
 		

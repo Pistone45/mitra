@@ -8,13 +8,27 @@ $getServices = new Service();
 $services = $getServices->getServices();
 
 
+if(isset($_GET['delete'])){
+	$id = $_GET['delete'];
+	
+	$deleteServices = new Service();
+	$deleteServices->deleteServices($id);
+	
+	//refresh services
+	$getServices = new Service();
+	$services = $getServices->getServices();
+
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" description="IE=edge">
-  <service></service>
+  
   <!-- Tell the browser to be responsive to screen width -->
   <meta description="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -47,48 +61,45 @@ $services = $getServices->getServices();
    <?php include_once('sidebar.html'); ?>
 
   <!-- description Wrapper. Contains page description -->
-  <div class="description-wrapper">
+  <div class="content-wrapper">
     <!-- description Header (Page header) -->
-    <section class="description-header">
+    <section class="content-header">
       <h1>
-        Edit Services
+        View Services
        
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="add-news.php">Edit Services</a></li>
+        <li class="active"><a href="view-services.php">View Services</a></li>
        
       </ol>
     </section>
 
     <!-- Main description -->
     <section class="description">
-	<!-- form start -->
-            <form role="form" action="add-news.php" method="POST" enctype="multipart/form-data">
-			<?php
-                            if(isset($_SESSION["news-added"]) && $_SESSION["news-added"]==true)
-                            {
-                                echo "<div class='alert alert-success'>";
-                                echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
-                                echo "<strong>Success! </strong>"; echo "You have successfully added news";
-                                unset($_SESSION["news-added"]);
-                                echo "</div>";
-								 header('Refresh: 5; URL= index.php');
-                            }
-							?>
+			<div class="container">
+			
+			</div>
       <div class="row box box-primary">
         <!-- left column -->
         <div class="col-md-12">
           <!-- general form elements -->
               <div class="box-body">
              <table class="table">
+			 <thead>
+				<th>Title</th>
+				<th>Short Description</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			 </thead>
 			 <?php
-						if(count($services)>0){
+						if(isset($services) && count($services)>0){
 							foreach($services as $service){ ?>
 							<tr>
-								<td><?php echo $service['service']; ?></td>
-								<td><?php echo substr($service['description'],0, 50); ?></td>
+								<td><?php echo $service['title']; ?></td>
+								<td><?php echo substr($service['description'],0, 100); ?>...</td>
 								<td><a href="edit-service.php?id=<?php echo $service['id']; ?>"><i class="fa fa-pencil"></i> Edit Service</a></td>
+								<td><a href="view-services.php?delete=<?php echo $service['id']; ?>" class="text-danger"><i class="fa fa-trash"></i> Delete Service</a></td>
 							</tr>
 							<?php
 							}
@@ -109,7 +120,7 @@ $services = $getServices->getServices();
         
       </div>
       <!-- /.row -->
-	  </form>
+
     </section>
     <!-- /.description -->
   </div>

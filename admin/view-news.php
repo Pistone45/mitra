@@ -7,6 +7,18 @@ if(!isset($_SESSION['user'])){
 $getNews = new News();
 $news = $getNews->getNews();
 
+if(isset($_GET['delete'])){
+	$id = $_GET['delete'];
+	
+	$deleteNews = new News();
+	$deleteNews->deleteNews($id);
+	
+	//refresh news
+	$getNews = new News();
+	$news = $getNews->getNews();
+
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +26,7 @@ $news = $getNews->getNews();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Edit News | Click Mobile</title>
+  <title>Edit News | MITRA Systems</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -77,8 +89,9 @@ $news = $getNews->getNews();
                             <tr>
 								<td><img src="<?php echo $new['image_url']; ?>" height="70px" width="70px;" /></td>
 								<td><?php echo $new['title']; ?></td>
-								<td><?php echo $new['news']; ?></td>
+								<td><?php echo substr($new['news'],0,100); ?>...</td>
 								<td><a href="edit-news.php?id=<?php echo $new['id']; ?>"><i class="fa fa-pencil"></i> Edit News</a></td>
+								<td><a href="view-news.php?delete=<?php echo $new['id']; ?>" class="text-danger"><i class="fa fa-trash"></i> Delete News</a></td>
 							</tr>
 							<?php
 							}

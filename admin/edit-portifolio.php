@@ -1,22 +1,72 @@
 <?php
 include_once("../functions/functions.php");
+if(!isset($_SESSION['user'])){
+		header("Location: login.php");
+		exit;
+	}
+if(isset($_GET['id'])){
+	$id = $_GET['id'];
+$getPortifolio = new Portfolio();
+$portfolio = $getPortifolio->getPortifolio($id);	
+}
 
 
 if(isset($_POST['submit'])){
 	
-	$firstname= $_POST['firstname'];
-	$middlename = $_POST['middlename'];
-	$lastname = $_POST['lastname'];
-	$password =$_POST['password'];
-	$phone = $_POST['phone'];
-	$email = $_POST['email'];
-	$role =10; //admin
+	//validate ID attachment
+	//validate  file
+	 if(isset($_FILES['portfolio_image'])){
+      $errors= array();
+      $file_name = $_FILES['portfolio_image']['name'];
+      $file_size =$_FILES['portfolio_image']['size'];
+      $file_tmp =$_FILES['portfolio_image']['tmp_name'];
+      $file_type=$_FILES['portfolio_image']['type'];
+	  $dot = ".";
+
+     // $file_ext=strtolower(end(explode($dot,$file_name)));
+
+	  $bannerpath = "../news/";
+	  $bannerpath = $bannerpath . basename($file_name);
+	   $file_ext = pathinfo($bannerpath,PATHINFO_EXTENSION);
+      $expensions= array("JPG", "jpg","PNG","png","GIF","gif");
+
+      if(in_array($file_ext,$expensions)=== false){
+         $errors[]="This file extension is not allowed.";
+      }
+
+      if($file_size > 3007152){
+
+         $errors[]='File size must be not more than 3 MB';
+
+      }
+
+      if(empty($errors)==true){
+		move_uploaded_file($file_tmp, $bannerpath);
+
+      }else{
+		   $errors[]='Error Uploading file';
+
+         //print_r($errors);
+      }
+	 }
+
+	  $title = $_POST['title'];
+	 $content = $_POST['content'];
+	   $id = $_POST['id'];
+	 if(strlen($bannerpath) ==8){
+		 $bannerpath = $_POST['url'];
+		 
+	 }
 	
-	$username = $email;
-	$password = password_hash($password, PASSWORD_DEFAULT)."\n"; 
-	$addUser = new User();
-	$addUser->addUser($username,$firstname,$middlename, $lastname, $role,$password,$phone,$email);
-	
+
+     $editPortifolio = new Portfolio();
+
+	 $editPortifolio->editPortifolio($bannerpath,$title,$content,$id);
+
+	//refresh page
+	$id = $id;
+	$getPortifolio = new Portfolio();
+	$portfolio = $getPortifolio->getPortifolio($id);	
 }
 
 ?>
@@ -25,7 +75,7 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MITRA Systems| Add User</title>
+  <title>Edit Portfolio | MITRA Systems</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -62,79 +112,63 @@ if(isset($_POST['submit'])){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Registration
+        Edit Portfolio
        
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="add-user.php">User Registration</a></li>
+        <li class="active"><a href="edit-portfolio.php">Edit Portfolio</a></li>
        
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            
-           
-            <!-- form start -->
-            <form role="form" action="add-user.php" method="POST">
+	<!-- form start -->
+            <form role="form" action="edit-portifolio.php" method="POST" enctype="multipart/form-data">
 			<?php
-                            if(isset($_SESSION["user-added"]) && $_SESSION["user-added"]==true)
+                            if(isset($_SESSION["portfolio-edited"]) && $_SESSION["portfolio-edited"]==true)
                             {
                                 echo "<div class='alert alert-success'>";
                                 echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
-                                echo "<strong>Success! </strong>"; echo "You have successfully added the User";
-                                unset($_SESSION["user-added"]);
+                                echo "<strong>Success! </strong>"; echo "You have successfully edited the portfolio";
+                                unset($_SESSION["portfolio-edited"]);
                                 echo "</div>";
-								 header('Refresh: 5; URL= add-user.php');
+								 header('Refresh: 5; URL= view-portifolio.php');
                             }
 							?>
+      <div class="row box box-primary">
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
               <div class="box-body">
+                <div class="form-group">
+                  <label for="fatherName">Title</label>
+                  <input class="form-control" name="title" value="<?php if(isset($portfolio)){echo $portfolio['title'];}   ?>" required>
+                </div>
+				<input type="hidden" value="<?php if(isset($portfolio)){echo $portfolio['image_url']; }   ?>" name="url" />
+					<input type="hidden" value="<?php if(isset($portfolio)){echo $portfolio['id'];}    ?>" name="id" />
+                     <div class="">
+                     <img src="<?php if(isset($portfolio)){echo $portfolio['image_url'];}    ?>" class="img img-thumbnail" width="50px;"><br/>
+					 
+				<div class="form-group">
+                  <label for="fatherMiddleName">Portfolio Image</label>
+                  <input type="file" class="" name="portfolio_image" >
+                </div>
+				
+				<div class="form-group">
+                  <label for="fatherLastname">Portfolio Content</label>
+                  <textarea class="form-control" name="content" required><?php  if(isset($portfolio)){echo $portfolio['content'];  } ?></textarea>
+                </div>
+				
+              
+                
+              </div>
 			  
-                <div class="form-group">
-                  <label for="firstname">Firstname</label>
-                  <input type="text" class="form-control" id="firstname" name="firstname">
-                </div>
-                <div class="form-group">
-                  <label for="Middlename">Middlename</label>
-                  <input type="text" class="form-control" id="Middlename" name="middlename">
-                </div>
-				
-				 <div class="form-group">
-                  <label for="Lastname">Lastname</label>
-                  <input type="text" class="form-control" id="Lastname" name="lastname">
-                </div>
-				
-				<div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input type="text" class="form-control" id="phone" name="phone">
-                </div>
-				
-				<div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email">
-                </div>
-				
-				<div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" name="password">
-                </div>
-				
-                
-                
-              </div>
               <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+			  <div class="box-footer">
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Edit Portfolio</button>
               </div>
-            </form>
-          </div>
           <!-- /.box -->
 
         
@@ -143,11 +177,15 @@ if(isset($_POST['submit'])){
         <!--/.col (left) -->
         <!-- right column -->
         <div class="col-md-6">
-          
+            
+		
+			
+			
         </div>
         <!--/.col (right) -->
       </div>
       <!-- /.row -->
+	  </form>
     </section>
     <!-- /.content -->
   </div>

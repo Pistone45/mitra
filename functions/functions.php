@@ -40,7 +40,7 @@ class User{
 					// Success!
 					$_SESSION['user'] = $row;
 					
-					header("Location: index.php");
+					header("Location: view-news.php");
 					//die();
 				}
 				else {
@@ -238,12 +238,12 @@ class User{
 	} //end of getting single user
 
 	//Update Password
-	public function updatepassword($username, $password){
+	public function updatePassword($password){
 
 		try{
 			$updatepassword = $this->dbCon->prepare("UPDATE users SET password =? WHERE username=?");
 			$updatepassword->bindparam(1, $password);	
-			$updatepassword->bindparam(2, $username);			
+			$updatepassword->bindparam(2, $_SESSION['user']['username']);			
 			$updatepassword->execute();
 			
 			$_SESSION['password_updated'] =true;
@@ -356,7 +356,7 @@ class Service{
 	}
 
 	public function getServices(){
-		$getServices = $this->dbCon->prepare("SELECT id, service, description FROM services");
+		$getServices = $this->dbCon->prepare("SELECT id, service as title, description FROM services");
 		$getServices->execute();
 
 		if($getServices->rowCount()>0){
@@ -406,7 +406,13 @@ public function getServicesPerCategory($id){
 		$_SESSION['service-edited'] = true;
 	}
 
-
+		public function deleteServices($id){
+		$deleteServices = $this->dbCon->Prepare("DELETE FROM services WHERE id=?");
+		$deleteServices->bindParam(1,$id);
+		$deleteServices->execute();
+		
+		
+	}
 }//End of class Service
 
 
@@ -569,18 +575,60 @@ class News{
 		$_SESSION['news-edited'] = true;
 	}
 	
-    /* public function getSpecificNews($id){
-		$getSpecificNews = $this->dbCon->Prepare("SELECT id,title,news,image_url,date_added,users_username FROM news WHERE id=?");
-		$getSpecificNews->bindParam(1,$id);
-		$getSpecificNews->execute();
+	public function deleteNews($id){
+		$deleteNews = $this->dbCon->Prepare("DELETE FROM news WHERE id=?");
+		$deleteNews->bindParam(1,$id);
+		$deleteNews->execute();
 		
-		if($getSpecificNews->rowCount()>0){
-			$row = $getSpecificNews->fetch();
+		
+	}
+}
+
+
+class Portfolio{
+	private $dbCon;
+
+//private $username;
+
+	public function __construct(){
+
+		try{
+
+		$this->dbCon = new Connection();
+
+		$this->dbCon = $this->dbCon->dbConnection();
+		$this->dbCon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		} catch (PDOException $e){
+			echo "Lost connection to the database";
+		}
+	}
+
+	public function getPortifolio($id){
+		$getPortifolio = $this->dbCon->Prepare("SELECT id, title, content, image_url FROM portifolio WHERE id=?");
+		$getPortifolio->bindParam(1,$id);
+		$getPortifolio->execute();
+		
+		if($getPortifolio->rowCount()>0){
+			$row = $getPortifolio->fetch();
 			return $row;
 		}
-		
-	} */
+	} //end of getting portifolio
+	
+
+	
+	public function editPortifolio($bannerpath,$title,$content,$id){
+		$editPortifolio = $this->dbCon->PREPARE("UPDATE portifolio SET title=?, content=?, image_url=? WHERE id=?");
+		$editPortifolio->bindParam(1,$title);
+		$editPortifolio->bindParam(2,$content);
+		$editPortifolio->bindParam(3,$bannerpath);
+		$editPortifolio->bindParam(4,$id);
+		$editPortifolio->execute();
+		$_SESSION['portfolio-edited'] = true;
+	}
+
 }
+
 
 
 

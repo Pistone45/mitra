@@ -1,23 +1,12 @@
 <?php
 include_once("../functions/functions.php");
-
-
-if(isset($_POST['submit'])){
-	
-	$firstname= $_POST['firstname'];
-	$middlename = $_POST['middlename'];
-	$lastname = $_POST['lastname'];
-	$password =$_POST['password'];
-	$phone = $_POST['phone'];
-	$email = $_POST['email'];
-	$role =10; //admin
-	
-	$username = $email;
-	$password = password_hash($password, PASSWORD_DEFAULT)."\n"; 
-	$addUser = new User();
-	$addUser->addUser($username,$firstname,$middlename, $lastname, $role,$password,$phone,$email);
-	
-}
+if(!isset($_SESSION['user'])){
+		header("Location: login.php");
+		exit;
+	}
+$id =10; //default id
+$getPortifolio = new Portfolio($id);
+$portifolio = $getPortifolio->getPortifolio($id);
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +14,7 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MITRA Systems| Add User</title>
+  <title>View Portifolio | MITRA Systems</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -62,92 +51,55 @@ if(isset($_POST['submit'])){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Registration
+        View Portifolio
        
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="add-user.php">User Registration</a></li>
+        <li class="active"><a href="view-portifolio.php">View Portifolio</a></li>
        
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
+	<!-- form start -->
             
-           
-            <!-- form start -->
-            <form role="form" action="add-user.php" method="POST">
-			<?php
-                            if(isset($_SESSION["user-added"]) && $_SESSION["user-added"]==true)
-                            {
-                                echo "<div class='alert alert-success'>";
-                                echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
-                                echo "<strong>Success! </strong>"; echo "You have successfully added the User";
-                                unset($_SESSION["user-added"]);
-                                echo "</div>";
-								 header('Refresh: 5; URL= add-user.php');
-                            }
-							?>
+      <div class="row box box-primary">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
               <div class="box-body">
+             <table class="table">
+              <?php
+			                         if(isset($portifolio) && count($portifolio)>0){ ?>
+                            
+                            <tr>
+								<td><img src="<?php echo $portifolio['image_url']; ?>" height="70px" width="70px;" /></td>
+								<td><?php echo $portifolio['title']; ?></td>
+								<td><?php echo substr($portifolio['content'],0,100); ?>...</td>
+								<td><a href="edit-portifolio.php?id=<?php echo $portifolio['id']; ?>"><i class="fa fa-pencil"></i> Edit Portifolio</a></td>
+								
+							</tr>
+							<?php
+							
+						} ?>
+				
+			 </table>
+              
+                
+              </div>
 			  
-                <div class="form-group">
-                  <label for="firstname">Firstname</label>
-                  <input type="text" class="form-control" id="firstname" name="firstname">
-                </div>
-                <div class="form-group">
-                  <label for="Middlename">Middlename</label>
-                  <input type="text" class="form-control" id="Middlename" name="middlename">
-                </div>
-				
-				 <div class="form-group">
-                  <label for="Lastname">Lastname</label>
-                  <input type="text" class="form-control" id="Lastname" name="lastname">
-                </div>
-				
-				<div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input type="text" class="form-control" id="phone" name="phone">
-                </div>
-				
-				<div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email">
-                </div>
-				
-				<div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" name="password">
-                </div>
-				
-                
-                
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
-          <!-- /.box -->
+              
 
         
 
         </div>
         <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-          
-        </div>
-        <!--/.col (right) -->
+        
       </div>
       <!-- /.row -->
+	
     </section>
     <!-- /.content -->
   </div>
