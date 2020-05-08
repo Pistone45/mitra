@@ -28,8 +28,10 @@ class User{
 
 	public function login($username, $password){
 		if(!empty($username) && !empty ($password)) {
-		$login_query = $this->dbCon->prepare("SELECT username, firstname, lastname, phone, email, password FROM users WHERE username=?" );
+			$status = 1; //active
+		$login_query = $this->dbCon->prepare("SELECT username, firstname, lastname, phone, email, password FROM users WHERE username=? AND status=?" );
 				$login_query->bindParam(1, $username);
+				$login_query->bindParam(2, $status);
 				$login_query->execute();
 				
 				if($login_query->rowCount() ==1){
@@ -179,10 +181,12 @@ class User{
 
 	} //end of getting users
 	
-		public function getAllUsers(){
+		public function getActiveUsers(){
 		//get all users
 		try{
-			$getUsers = $this->dbCon->prepare("SELECT username, firstname,middlename,lastname, email, phone from users " );
+			$status = 1; //active
+			$getUsers = $this->dbCon->prepare("SELECT username, firstname,middlename,lastname, email, phone from users WHERE status=?" );
+			$getUsers->bindParam(1,$status);
 			$getUsers->execute();
 			if($getUsers->rowCount()>0){
 				$row = $getUsers->fetchAll();
@@ -195,7 +199,18 @@ class User{
 		}
 
 
-	} //end of getting users
+	} //end of getting active users
+	
+	//delete user
+	public function deleteUser($id){
+		$status =0; //inactive
+		$deleteUser = $this->dbCon->PREPARE("UPDATE users SET status=? WHERE username=?");
+		$deleteUser->bindParam(1,$status);
+		$deleteUser->bindParam(2,$id);
+		$deleteUser->execute();
+				
+	}
+	
 	//get specfic user
 	public function getSpecificUser($username){
 		
