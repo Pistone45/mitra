@@ -77,38 +77,39 @@ if(isset($_POST['submit'])){
       <div class="container">
         <div class="info">
           <i class="icofont-google-map"></i>
-          <h4>Location:</h4>
-          <p>Area 2
-          Bwalo la Mjovu
-          P.O Box 445
-          Lilongwe</p><br>
-          <p>230 Sherwood Drive
-          Avondale West
-          Harare</p>
+          <h4>Malawi:</h4>
+          <p>2nd Floor<br>
+          Pamodzi Park, Unit 19<br>
+          P.O Box 762<br>
+          Blantyre<br>
+		  
+		  <strong>Phone:</strong> +265 888 876 995<br>
+              <strong>Email:</strong> sales@mitra.mw<br></p><br>
+		  <br>
+              
+		  <i class="icofont-google-map"></i>
+          <h4>Zimbabwe:</h4>
+          <p>230 Sherwood Drive<br>
+          Avondale West<br>
+          Harare<br>
+		   <strong>Phone:</strong> +263 772591154<br>
+		   <strong>Email:</strong> sales@mitra.co.zw<br>
+		  </p>
+		  <br>
+		  <i class="icofont-google-map"></i>
+		  <h4>Zambia Office</h4>
+            <p>
+              9, THORN PARK, <br>
+              Mungulube Road Off Makishi Road<br>
+              Lusaka <br>
+              <strong>Phone:</strong> +260 97 7977165<br>
+			   <strong>Email:</strong> info@mitra.co.zw<br>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="contact section-bg">
-          <div class="container">
-            <div class="col-lg-4 info mt-4 mt-lg-0">
-              <i class="icofont-envelope"></i>
-              <h4>Email:</h4>
-              <p>support@mitra.mw</p>
-            </div>
-          </div>
-    </section>
-
-    <section id="contact" class="contact section-bg">
-          <div class="container">
-                <div class="col-lg-4 info">
-                  <i class="icofont-phone"></i>
-                  <h4>Call:</h4>
-                  <p>+265994885227<br>+265994885227</p>
-                </div>
-          </div>
-          </div>
-    </section>
+    
+    
 
     </div>
   </div>

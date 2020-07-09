@@ -15,7 +15,7 @@ $categories = $getCategories->getCategories();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>View Categories | Office World</title>
+  <title>View Categories | MITRA Systems</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -73,14 +73,14 @@ $categories = $getCategories->getCategories();
               <div class="box-body">
              <table class="table">
 			 <th>Name</th>
-			 <th>Action</th>
+			
 			 <?php
 						if(isset($categories) && count($categories)>0){
 							foreach($categories as $category){ ?>
 							<tr>
 								
-								<td><?php echo $category['name']; ?></td>
-								<td><a href="add-subcategory.php?id=<?php echo $category['category_id']; ?>"><i class="fa fa-pencil"></i> Add Subcategory</a></td>
+								<td><?php echo $category['category_name']; ?></td>
+								
 							</tr>
 							<?php
 							}

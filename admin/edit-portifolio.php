@@ -144,7 +144,7 @@ if(isset($_POST['submit'])){
               <div class="box-body">
                 <div class="form-group">
                   <label for="fatherName">Title</label>
-                  <input class="form-control" name="title" value="<?php if(isset($portfolio)){echo $portfolio['title'];}   ?>" required>
+                  <input class="form-control" name="title" value="<?php if(isset($portfolio)){echo $portfolio['portifolio'];}   ?>" required>
                 </div>
 				<input type="hidden" value="<?php if(isset($portfolio)){echo $portfolio['image_url']; }   ?>" name="url" />
 					<input type="hidden" value="<?php if(isset($portfolio)){echo $portfolio['id'];}    ?>" name="id" />
@@ -158,7 +158,7 @@ if(isset($_POST['submit'])){
 				
 				<div class="form-group">
                   <label for="fatherLastname">Portfolio Content</label>
-                  <textarea class="form-control" name="content" required><?php  if(isset($portfolio)){echo $portfolio['content'];  } ?></textarea>
+                  <textarea class="form-control" name="content" required><?php  if(isset($portfolio)){echo $portfolio['description'];  } ?></textarea>
                 </div>
 				
               

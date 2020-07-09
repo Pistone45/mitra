@@ -428,6 +428,22 @@ public function getServicesPerCategory($id){
 		
 		
 	}
+	
+	
+		public function addPortifolio($image_Path,$portifolio,$description, $category_id){
+				$addPortifolio = $this->dbCon->prepare("INSERT INTO services_portifolio (image_url,portifolio, description, category_id) VALUES (:image_url, :portifolio, :description, :category_id)" );
+
+				$addPortifolio->execute(array(
+						':image_url'=>($image_Path),
+						':portifolio'=>($portifolio),
+						':description'=>($description),
+						':category_id'=>($category_id)));
+						  
+						  $_SESSION['portifolio-added']=true;
+		
+	}
+
+
 }//End of class Service
 
 
@@ -619,13 +635,12 @@ class Portfolio{
 		}
 	}
 
-	public function getPortifolio($id){
-		$getPortifolio = $this->dbCon->Prepare("SELECT id, title, content, image_url FROM portifolio WHERE id=?");
-		$getPortifolio->bindParam(1,$id);
+	public function getPortifolio(){
+		$getPortifolio = $this->dbCon->Prepare("SELECT id, portifolio, description,category_id, image_url FROM services_portifolio");
 		$getPortifolio->execute();
 		
 		if($getPortifolio->rowCount()>0){
-			$row = $getPortifolio->fetch();
+			$row = $getPortifolio->fetchAll();
 			return $row;
 		}
 	} //end of getting portifolio
@@ -633,7 +648,7 @@ class Portfolio{
 
 	
 	public function editPortifolio($bannerpath,$title,$content,$id){
-		$editPortifolio = $this->dbCon->PREPARE("UPDATE portifolio SET title=?, content=?, image_url=? WHERE id=?");
+		$editPortifolio = $this->dbCon->PREPARE("UPDATE services_portifolio SET portifolio=?, description=?, image_url=? WHERE id=?");
 		$editPortifolio->bindParam(1,$title);
 		$editPortifolio->bindParam(2,$content);
 		$editPortifolio->bindParam(3,$bannerpath);
@@ -643,6 +658,94 @@ class Portfolio{
 	}
 
 }
+
+class Category{
+	private $dbCon;
+
+//private $username;
+
+	public function __construct(){
+
+		try{
+
+		$this->dbCon = new Connection();
+
+		$this->dbCon = $this->dbCon->dbConnection();
+		$this->dbCon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		} catch (PDOException $e){
+			echo "Lost connection to the database";
+		}
+	}
+
+	public function getCategories(){
+		$getCategories = $this->dbCon->Prepare("SELECT id, category_name FROM category");
+		$getCategories->execute();
+		
+		if($getCategories->rowCount()>0){
+			$row = $getCategories->fetchAll();
+			return $row;
+		}
+	} //end of getting categories
+	
+
+	
+	public function addCategory($name){
+		$addCategory = $this->dbCon->prepare("INSERT INTO category (category_name) VALUES (:category_name)" );
+				$addCategory->execute(array(
+						  ':category_name'=>($name)));
+						  
+						  $_SESSION['category-added']=true;
+	}
+
+}
+
+
+class Customer{
+	private $dbCon;
+
+//private $username;
+
+	public function __construct(){
+
+		try{
+
+		$this->dbCon = new Connection();
+
+		$this->dbCon = $this->dbCon->dbConnection();
+		$this->dbCon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		} catch (PDOException $e){
+			echo "Lost connection to the database";
+		}
+	}
+
+	public function getCustomers(){
+		$getCustomers = $this->dbCon->Prepare("SELECT id, name, logo,description FROM customers");
+		$getCustomers->execute();
+		
+		if($getCustomers->rowCount()>0){
+			$row = $getCustomers->fetchAll();
+			return $row;
+		}
+	} //end of getting categories
+	
+
+	
+	public function addCustomer($name,$logo,$description){
+		$addCustomer = $this->dbCon->prepare("INSERT INTO customers (name,logo,description) VALUES (:name,:logo,:description)" );
+				$addCustomer->execute(array(
+						  ':name'=>($name),
+						   ':logo'=>($logo),
+						   ':description'=>($description)
+						   ));
+						  
+						  $_SESSION['customer-added']=true;
+	}
+
+}
+
+
 
 
 

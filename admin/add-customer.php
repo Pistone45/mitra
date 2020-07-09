@@ -7,13 +7,51 @@ if(!isset($_SESSION['user'])){
 
 if(isset($_POST['submit'])){
 	
-	$name= $_POST['name'];
-	$phone = $_POST['phone'];
-	$email = $_POST['email'];
-	$address =$_POST['address'];
+		//validate ID attachment
+	//validate  file
+	 if(isset($_FILES['customer_image'])){
+      $errors= array();
+      $file_name = $_FILES['customer_image']['name'];
+      $file_size =$_FILES['customer_image']['size'];
+      $file_tmp =$_FILES['customer_image']['tmp_name'];
+      $file_type=$_FILES['customer_image']['type'];
+	  $dot = ".";
+
+     // $file_ext=strtolower(end(explode($dot,$file_name)));
+
+	  $imagePath = "../img/";
+	  $imagePath = $imagePath . basename($file_name);
+	   $file_ext = pathinfo($imagePath,PATHINFO_EXTENSION);
+      $expensions= array("JPG", "jpg","PNG","png","GIF","gif");
+
+      if(in_array($file_ext,$expensions)=== false){
+         $errors[]="This file extension is not allowed.";
+      }
+
+      if($file_size > 3007152){
+
+         $errors[]='File size must be not more than 3 MB';
+
+      }
+
+      if(empty($errors)==true){
+		move_uploaded_file($file_tmp, $imagePath);
+
+      }else{
+		   $errors[]='Error Uploading file';
+
+         //print_r($errors);
+      }
+	   
+	  $logo = $imagePath;
+	 // echo $image_Path; die();
+	 }
 	
-	$addCustomer = new Contact();
-	$addCustomer->addCustomer($name,$phone,$email,$address);
+	$name= $_POST['name'];
+	$description= $_POST['description'];
+	
+	$addCustomer = new Customer();
+	$addCustomer->addCustomer($name,$logo,$description);
 
 	
 }
@@ -24,7 +62,7 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Travel Options | Add Customer</title>
+  <title>Add Customer | MITRA Systems</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -81,7 +119,7 @@ if(isset($_POST['submit'])){
             
            
             <!-- form start -->
-            <form role="form" action="add-customer.php" method="POST">
+            <form role="form" action="add-customer.php" method="POST" enctype="multipart/form-data">
 			<?php
                             if(isset($_SESSION["customer-added"]) && $_SESSION["customer-added"]==true)
                             {
@@ -102,19 +140,17 @@ if(isset($_POST['submit'])){
                 
 				 				
 				<div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input type="text" class="form-control" id="phone" name="phone">
+                  <label for="fatherMiddleName">Customer Logo</label>
+                  <input type="file" class="" name="customer_image" required>
                 </div>
 				
 				<div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" name="email">
+                  <label for="name">Brief Description</label>
+				    <textarea class="form-control" name="description" required></textarea>
+                  
                 </div>
 				
-                <div class="form-group">
-                  <label for="Middlename">Address</label>
-                  <input type="text" class="form-control" id="address" name="address">
-                </div>
+				
 				
               </div>
               <!-- /.box-body -->

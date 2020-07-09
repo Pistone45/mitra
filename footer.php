@@ -7,12 +7,12 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>Malawi Office</h3>
             <p>
-              Area 2 <br>
-              Bwalo la Mjovu<br>
-              P.O Box 445<br>
-              Lilongwe<br><br>
+              2nd Floor <br>
+              Pamodzi Park, Unit 19<br>
+              P.O Box 762<br>
+              Blantyre<br><br>
               <strong>Phone:</strong> +265 888 876 995<br>
-              <strong>Email:</strong> support@mitra.mw<br>
+              <strong>Email:</strong> sales@mitra.mw<br>
             </p>
           </div>
 
@@ -22,11 +22,23 @@
               230 Sherwood Drive <br>
               Avondale West<br>
               Harare <br><br><br>
-              <strong>Phone:</strong> +263 732591154<br>
+              <strong>Phone:</strong> +263 772591154<br>
+			  <strong>Email:</strong> sales@mitra.co.zw<br>
+            </p>
+          </div>
+		  
+		      <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Zambia Office</h3>
+            <p>
+              9, THORN PARK, <br>
+              Mungulube Road Off Makishi Road<br>
+              Lusaka <br><br><br>
+              <strong>Phone:</strong> +260 97 7977165<br>
+			   <strong>Email:</strong> info@mitra.co.zw<br>
             </p>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-lg-3 col-md-6 footer-links">
             <h4>Quick Links</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
@@ -37,10 +49,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4> <?php if(isset($portfolio)){ echo $portfolio['title']; }?></h4>
-            <p> <?php if(isset($portfolio)){ echo substr($portfolio['content'],0,150); }?><a href="portfolio.php">.... Read More</a></p>
-          </div>
+         
 
         </div>
       </div>

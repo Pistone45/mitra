@@ -5,8 +5,61 @@ if(!isset($_SESSION['user'])){
 		exit;
 	}
 
-$getPortifolio = new Portfolio();
-$portifolio = $getPortifolio->getPortifolio();
+  $getCategoryType = new Service();
+  $Category_type = $getCategoryType->getCategoryType();
+
+if(isset($_POST['submit'])){
+	
+		//validate ID attachment
+	//validate  file
+	 if(isset($_FILES['portifolio_image'])){
+      $errors= array();
+      $file_name = $_FILES['portifolio_image']['name'];
+      $file_size =$_FILES['portifolio_image']['size'];
+      $file_tmp =$_FILES['portifolio_image']['tmp_name'];
+      $file_type=$_FILES['portifolio_image']['type'];
+	  $dot = ".";
+
+     // $file_ext=strtolower(end(explode($dot,$file_name)));
+
+	  $imagePath = "../img/";
+	  $imagePath = $imagePath . basename($file_name);
+	   $file_ext = pathinfo($imagePath,PATHINFO_EXTENSION);
+      $expensions= array("JPG", "jpg","PNG","png","GIF","gif");
+
+      if(in_array($file_ext,$expensions)=== false){
+         $errors[]="This file extension is not allowed.";
+      }
+
+      if($file_size > 3007152){
+
+         $errors[]='File size must be not more than 3 MB';
+
+      }
+
+      if(empty($errors)==true){
+		move_uploaded_file($file_tmp, $imagePath);
+
+      }else{
+		   $errors[]='Error Uploading file';
+
+         //print_r($errors);
+      }
+	   
+	  $image_Path = $imagePath;
+	 // echo $image_Path; die();
+	 }
+
+	  $portifolio = $_POST['portifolio'];
+	  $description = $_POST['description'];
+	  $category_id = $_POST['category_id']; 
+	  
+	 $addPortifolio = new Service();
+	 $addPortifolio->addPortifolio($image_Path,$portifolio,$description, $category_id);
+	
+
+	
+}
 
 ?>
 <!DOCTYPE html>
@@ -14,7 +67,7 @@ $portifolio = $getPortifolio->getPortifolio();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>View Portifolio | MITRA Systems</title>
+  <service></service>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -51,12 +104,12 @@ $portifolio = $getPortifolio->getPortifolio();
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        View Portifolio
+        Add Portifolio
        
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="view-portifolio.php">View Portifolio</a></li>
+        <li class="active"><a href="add-portifolio.php">Add Portifolio</a></li>
        
       </ol>
     </section>
@@ -64,49 +117,79 @@ $portifolio = $getPortifolio->getPortifolio();
     <!-- Main content -->
     <section class="content">
 	<!-- form start -->
-            
+            <form role="form" action="add-portifolio.php" method="POST" enctype="multipart/form-data">
+			<?php
+                            if(isset($_SESSION["portifolio-added"]) && $_SESSION["portifolio-added"]==true)
+                            {
+                                echo "<div class='alert alert-success'>";
+                                echo "<button type='button' class='close' data-dismiss='alert'>*</button>";
+                                echo "<strong>Success! </strong>"; echo "You have successfully added portifolio";
+                                unset($_SESSION["portifolio-added"]);
+                                echo "</div>";
+								 header('Refresh: 5; URL= index.php');
+                            }
+							?>
       <div class="row box box-primary">
         <!-- left column -->
-        <div class="col-md-12">
+        <div class="col-md-6">
           <!-- general form elements -->
               <div class="box-body">
-             <table class="table">
-              <?php
-			                         if(isset($portifolio) && count($portifolio)>0){
-
-										foreach($portifolio as $port){ ?>
-											<tr>
-												<td><img src="<?php echo $port['image_url']; ?>" height="70px" width="70px;" /></td>
-												<td><?php echo $port['portifolio']; ?></td>
-												<td><?php echo substr($port['description'],0,100); ?>...</td>
-												<td><a href="edit-portifolio.php?id=<?php echo $port['id']; ?>"><i class="fa fa-pencil"></i> Edit Portifolio</a></td>
-												
-											</tr>
-										<?php
-											
-										}
-										 ?>
-                            
-                            
-							<?php
-							
-						} ?>
+                <div class="form-group">
+                  <label for="fatherName">Title</label>
+                  <input class="form-control" name="portifolio" required>
+                </div>
 				
-			 </table>
+                <label>Select Category Type</label>
+          <select name="category_id" class="form-control">
+            <?php 
+              if(isset($Category_type) && count($Category_type)>0){
+                  foreach($Category_type as $service){ ?>
+                      <option value="<?php echo $service['id']; ?>"><?php echo $service['category_name']; ?></option>
+                    <?php
+
+                  }
+
+              }
+            ?>
+          
+          </select>
+
+				<div class="form-group">
+                  <label for="fatherMiddleName">Portifolio Image</label>
+                  <input type="file" class="" name="portifolio_image" required>
+                </div>
+				
+				<div class="form-group">
+                  <label for="fatherLastname">Portifolio Description</label>
+                  <textarea class="form-control" name="description" required>                       
+                        </textarea>
+                </div>
+				
               
                 
               </div>
 			  
-              
+              <!-- /.box-body -->
+			  <div class="box-footer">
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
+              </div>
+          <!-- /.box -->
 
         
 
         </div>
         <!--/.col (left) -->
-        
+        <!-- right column -->
+        <div class="col-md-6">
+            
+		
+			
+			
+        </div>
+        <!--/.col (right) -->
       </div>
       <!-- /.row -->
-	
+	  </form>
     </section>
     <!-- /.content -->
   </div>
